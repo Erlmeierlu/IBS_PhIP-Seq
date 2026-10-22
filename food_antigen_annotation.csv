@@ -1,0 +1,95 @@
+antigen,food,food subcategory,food item,description
+twist_10040,food,fruits,papaya,Cari p Endoproteinase
+twist_10203,food,marine_food,crab,Por tr 2
+twist_10972,food,marine_food,octopus,Oct v 2
+twist_10996,food,marine_food,shrimp,Art fr 2
+twist_11359,food,fish,fish,Tak ru 2
+twist_11627,food,grains,wheat_related,Tri ur 37
+twist_12245,food,marine_food,crab,Cal s 2
+twist_12614,food,grains,wheat_related,Tri ur 37
+twist_1307,food,milk,milk,Bos d 8
+twist_13611,food,milk,milk,Bos d 8
+twist_13630,food,milk,milk,Bos d 8
+twist_14067,food,milk,milk,Ovi a 8
+twist_14325,food,grains,wheat,Tri a 37
+twist_15116,food,grains,barley,Hor v 39
+twist_15555,food,legumes,bean,Pha v PHA
+twist_15595,food,grains,wheat,Tri a GBSS_I
+twist_15602,food,grains,barley,Hor v 37
+twist_16004,food,meat_poultry,chicken,Gal d 3
+twist_1603,food,meat_poultry,chicken,Gal d 1
+twist_16064,food,grains,rice,Ory s GBSS_I
+twist_16189,food,grains,rice,Ory s GLP63
+twist_16254,food,legumes,lentil,Len c 1
+twist_163,food,grains,barley,Hor v 5
+twist_16861,food,grains,barley,Hor v 20
+twist_17426,food,grains,barley,Hor v 20
+twist_17534,food,vegetables,avocado,Pers a 1
+twist_1792,food,meat_poultry,turkey,Mel g 1
+twist_18575,food,grains,wheat,Tri a 20
+twist_18887,food,fish,fish,Ore ni 2
+twist_19685,food,grains,rice,Ory s 2
+twist_20427,food,vegetables,potato,Sola t 1
+twist_20503,food,milk,milk,Bos d 8
+twist_20844,food,milk,milk,Cap h 10
+twist_20848,food,milk,milk,Bos d 8
+twist_2099,food,grains,wheat,Tri a 37
+twist_21,food,grains,barley,Hor v 5
+twist_2100,food,grains,wheat_related,Tri m 37
+twist_21096,food,marine_food,crab,Por tr 2
+twist_21142,food,milk,milk,Bos d 8
+twist_21749,food,marine_food,squid,Sep l 2
+twist_22039,food,meat_poultry,chicken,Gal d 1
+twist_22083,food,milk,milk,Bub b 10
+twist_22556,food,milk,milk,Bub b 12
+twist_22888,food,grains,wheat_related,Aeg ta 37
+twist_22942,food,vegetables,tomato,Sola l Peroxidase
+twist_22989,food,milk,milk,Cap h 12
+twist_23154,food,milk,milk,Ovi a 10
+twist_23199,food,meat_poultry,goose,Ans a 1
+twist_23200,food,meat_poultry,duck,Aix ga 1
+twist_23370,food,grains,rye,Sec c 37
+twist_23551,food,grains,barley,Hor v 39
+twist_23602,food,marine_food,lobster,Hom g 2
+twist_23604,food,marine_food,shrimp,Art fr 2
+twist_24043,food,fish,fish,Epi co 2
+twist_2405,food,vegetables,potato,Sola t 1
+twist_24274,food,meat_poultry,chicken,Gal d 1
+twist_25138,food,milk,milk,Ovi a 8
+twist_25139,food,milk,milk,Bub b 8
+twist_25199,food,marine_food,octopus,Oct f 2
+twist_25228,food,milk,milk,Bos d 8
+twist_25251,food,meat_poultry,pig,Sus s 12
+twist_25254,food,milk,milk,Bub b 8
+twist_25498,food,milk,milk,Bub b 12
+twist_27025,food,milk,milk,"collagen, type IV, alpha 3"
+twist_28164,food,meat_poultry,chicken,Ovomucoid precursor
+twist_2830,food,milk,milk,Bub b 8
+twist_301,food,fruits,kiwi_actinidia,Act d 1
+twist_30726,food,meat_poultry,chicken,Ovomucoid precursor
+twist_33039,food,milk,milk,protein disulfide-isomerase precursor
+twist_3668,food,grains,rice,Ory s 11
+twist_36969,food,milk,milk,Alpha-S2-casein precursor
+twist_3824,food,meat_poultry,turkey,Mel g 1
+twist_40110,food,milk,milk,Kappa-casein precursor
+twist_41103,food,grains,wheat,alpha purothionin
+twist_4346,food,milk,milk,Bos d 8
+twist_48100,food,milk,milk,butyrophilin precursor
+twist_4896,food,fish,fish,Sal s 3
+twist_50962,food,milk,milk,alpha S1 casein
+twist_5109,food,meat_poultry,ostrich,Str c 1
+twist_51746,food,milk,milk,alpha S1 casein
+twist_54532,food,milk,milk,Kappa-casein precursor
+twist_5585,food,marine_food,crab,Lim p 2
+twist_57645,food,milk,milk,alpha S1 casein
+twist_58712,food,meat_poultry,chicken,histone H5
+twist_6249,food,fruits,kiwi_actinidia,Act e 1
+twist_6574,food,grains,buckwheat,Fag e 1
+twist_6595,food,grains,wheat,Tri a 26
+twist_7301,food,grains,barley,Hor v 37
+twist_7818,food,milk,milk,Bub b 8
+twist_843,food,milk,milk,Ovi a 12
+twist_8779,food,marine_food,crab,Por tr 2
+twist_8935,food,legumes,lentil,Len c 1
+twist_530,food,meat_poultry,beef,allergen_name False allergome_name Bos d Collagen_140kD (2/2) (1/1) allergenonline_name False SDAP_name False iedb_name False
+twist_1185,food,fish,fish,allergen_name False allergome_name Onc m alpha2I (2/2) (1/1) allergenonline_name False SDAP_name False iedb_name False
