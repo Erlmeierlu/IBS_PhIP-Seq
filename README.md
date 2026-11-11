@@ -12,7 +12,7 @@ The PhIP-Seq profiles used in this study were originally described in:
 
 Data are available via managed access in the European Genome-Phenome Archive (EGA) under study accession number EGAS00001006999 ([https://ega-archive.org/studies/EGAS00001006999]). 
 
-Individual-level human phenotype and clinical data belong to the **Lifelines Biobank** and cannot be distributed directly in a public repository due to participant privacy regulations. Researchers can request access to the underlying Lifelines-DEEP datasets through the Lifelines Research Office ([https://www.lifelines.nl/researcher](https://www.lifelines.nl/researcher)).
+Phenotype and clinical data belong to the **Lifelines Biobank** and cannot be distributed directly in a public repository due to participant privacy regulations. Researchers can request access to the underlying Lifelines-DEEP datasets through the Lifelines Research Office (https://www.lifelines.nl/researcher(https://www.lifelines.nl/researcher)).
 
 
 ---
@@ -29,7 +29,7 @@ Run the scripts from this directory, in numerical order:
    - **Outputs**: `1_phenos_ibs.rds`, `1_phenos_fup.rds`, `pi_ibs_markers.csv`, `fig1_qc_panels.rds`, `extended_figure_1.pdf`.
 
 3. **`2_Exploratory.R`**
-   - Performs confounder screening across study groups, builds the baseline characteristics table (`baseline_characteristics.xlsx`), runs mode-imputed PCA and k-means clustering (`k = 2`), executes Jaccard/Euclidean beta-dispersion and PERMANOVA (`vegan::adonis2`), and assembles **Figure 1**.
+   - Performs confounder screening across study groups, builds the baseline characteristics table (`baseline_characteristics.xlsx`), runs mode-imputed PCA and k-means clustering (`k = 2`), tests PC1/PC2 associations with clinical and technical variables, and assembles **Figure 1**.
    - **Outputs**: `2_phenos_subtypes.rds`, `food_categories.csv`, `baseline_characteristics.xlsx`, `figure_1.pdf`.
 
 4. **`3_Association.R`**

@@ -1,6 +1,6 @@
 # ==============================================================================
 # 2_Exploratory.R
-# Baseline characteristics, confounder screening, PCA, clustering, and PERMANOVA
+# Baseline characteristics, confounder screening, PCA, and clustering
 # ==============================================================================
 #
 # Purpose:
@@ -16,9 +16,8 @@
 #      Manuscript Figure 1 (`figure_1.pdf`).
 #   5. Evaluates PC associations with IBS subtypes, performs k-means clustering
 #      (k = 2) on PCA coordinates, and tests cluster drivers.
-#   6. Computes Jaccard PCoA, beta-dispersion (`betadisper` / `permutest`), and
-#      PERMANOVA (`adonis2`) for Jaccard and Euclidean distances across IBS
-#      subtypes, CMV serostatus, antibody binding load, and sequencing plate.
+#   6. Tests PC1 and PC2 associations across IBS subtypes, CMV serostatus,
+#      antibody binding load, and sequencing plate.
 #
 # Expected Inputs:
 #   - `1_phenos_ibs.rds`: QC'd baseline PhIP-Seq dataset (from 1_QC.R),
@@ -51,7 +50,6 @@ library(dunn.test)
 library(paletteer)
 library(patchwork)
 library(gtsummary)
-library(vegan)
 
 source("0_utils.R")
 
@@ -552,7 +550,7 @@ drivers |>
 ggsave("clustering_drivers.pdf")
 
 
-# 5. Jaccard PCoA, Beta-Dispersion, & PERMANOVA (adonis2) ----------------------
+# 5. PC1 / PC2 Univariate & Multivariate Tests ---------------------------------
 
 nnn <- phenos |> copy()
 nnn[,
@@ -562,115 +560,6 @@ nnn[,
     n_distinct_peptides <= 4000 , "3000"
   )
 ]
-
-dist_jaccard <- vegdist(IBS_samples_peptides, method = "jaccard", binary = TRUE)
-pcoa_jacc <- cmdscale(dist_jaccard, k = 2, eig = TRUE)
-
-pcoa_meta <- as.data.table(pcoa_jacc$points, keep.rownames = "sample_id")[
-  IBS_samples,
-  on = .NATURAL
-]
-pcoa_meta[,
-  IBS_Subtype := factor(
-    IBS_Subtype,
-    levels = c("IBS-C", "IBS-D", "IBS-M", "no IBS")
-  )
-]
-ggplot(pcoa_meta, aes(x = V1, y = V2)) +
-  geom_point(
-    aes(fill = IBS_Subtype),
-    alpha = 0.6,
-    shape = 21,
-    color = "grey30"
-  ) +
-  labs(title = "PCoA (Jaccard)") +
-  stat_ellipse(
-    aes(color = IBS_Subtype),
-    level = 0.95,
-    linetype = "dashed",
-    alpha = 1
-  ) +
-  scale_colour_paletteer_d(palette = "MoMAColors::Klein") +
-  scale_fill_paletteer_d(palette = "MoMAColors::Klein") +
-  theme_my(panel.grid.major.y = element_blank())
-
-set.seed(1245)
-dist_euclidean <- vegdist(IBS_samples_peptides, method = "euclidean")
-
-## 5a. IBS Subtype -------------------------------------------------------------
-dispersion_mod <- betadisper(dist_jaccard, nnn$IBS_Subtype)
-permutest(dispersion_mod, pairwise = TRUE)
-perm_jaccard <- adonis2(
-  IBS_samples_peptides ~ nnn$IBS_Subtype,
-  method = "jaccard",
-  binary = TRUE,
-  permutations = 999
-)
-
-dispersion_mod_pca <- betadisper(dist_euclidean, nnn$IBS_Subtype)
-permutest(dispersion_mod_pca, pairwise = TRUE)
-perm_euclid <- adonis2(
-  IBS_samples_peptides ~ nnn$IBS_Subtype,
-  method = "euclidean",
-  permutations = 999
-)
-
-## 5b. CMV Serostatus ----------------------------------------------------------
-dispersion_mod <- betadisper(dist_jaccard, nnn$CMV_prediction)
-permutest(dispersion_mod, pairwise = TRUE)
-perm_jaccard <- adonis2(
-  IBS_samples_peptides ~ nnn$CMV_prediction,
-  method = "jaccard",
-  binary = TRUE,
-  permutations = 999
-)
-
-dispersion_mod_pca <- betadisper(dist_euclidean, nnn$CMV_prediction)
-permutest(dispersion_mod_pca, pairwise = TRUE)
-perm_euclid <- adonis2(
-  IBS_samples_peptides ~ nnn$CMV_prediction,
-  method = "euclidean",
-  permutations = 999
-)
-
-## 5c. Antibody Binding Load ---------------------------------------------------
-dispersion_mod <- betadisper(dist_jaccard, nnn$`Enriched antibodies`)
-permutest(dispersion_mod, pairwise = TRUE)
-perm_jaccard <- adonis2(
-  IBS_samples_peptides ~ nnn$`Enriched antibodies`,
-  method = "jaccard",
-  binary = TRUE,
-  permutations = 999
-)
-
-dispersion_mod_pca <- betadisper(dist_euclidean, nnn$`Enriched antibodies`)
-permutest(dispersion_mod_pca, pairwise = TRUE)
-perm_euclid <- adonis2(
-  IBS_samples_peptides ~ nnn$`Enriched antibodies`,
-  method = "euclidean",
-  permutations = 999
-)
-
-## 5d. Sequencing Plate ID -----------------------------------------------------
-dispersion_mod <- betadisper(dist_jaccard, nnn$plate_id)
-permutest(dispersion_mod, pairwise = TRUE)
-perm_jaccard <- adonis2(
-  IBS_samples_peptides ~ nnn$plate_id,
-  method = "jaccard",
-  binary = TRUE,
-  permutations = 999
-)
-
-dispersion_mod_pca <- betadisper(dist_euclidean, nnn$plate_id)
-permutest(dispersion_mod_pca, pairwise = TRUE)
-perm_euclid <- adonis2(
-  IBS_samples_peptides ~ nnn$plate_id,
-  method = "euclidean",
-  permutations = 999
-)
-
-
-# 6. PC1 / PC2 Univariate & Multivariate Tests ---------------------------------
 
 pca_12 <- pca_result$x[, 1:10]
 pca_12 <- (pca_12 |> as.data.table(keep.rownames = "sample_id"))[
@@ -700,6 +589,6 @@ nnn[, by = IBS_Status, quantile(as.integer(n_distinct_peptides))[c(2, 4)]]
 round(sum(summary(pca_result)$importance[2, 1:20]) * 100, 2)
 
 
-# 7. Save Processed Dataset ----------------------------------------------------
+# 6. Save Processed Dataset ----------------------------------------------------
 
 write_rds(phenos, "2_phenos_subtypes.rds")
